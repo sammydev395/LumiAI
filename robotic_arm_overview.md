@@ -1,3 +1,13 @@
+# 🚀 LumiAI Robotic Arm System
+
+<div align="center">
+  <img src="LumiAI.png.png" alt="LumiAI Electronics Logo" width="150" height="150">
+  <br>
+  <strong>Advanced AI-Powered Robotic Lighting Platform</strong>
+</div>
+
+---
+
 # 🚀 Product Overview  
 
 ### Concept  
