@@ -1,0 +1,15 @@
+# Motion Relay Controller Requirements
+# Python 3.7+ required
+
+# Core GPIO library for Raspberry Pi
+RPi.GPIO>=0.7.0
+
+# Optional: For advanced features and testing
+# pytest>=6.0.0          # For running tests
+# pytest-cov>=2.10.0     # For test coverage
+# black>=21.0.0          # For code formatting
+# flake8>=3.8.0          # For linting
+# mypy>=0.800            # For type checking
+
+# Note: RPi.GPIO is the primary requirement and must be installed
+# on a Raspberry Pi system. Other packages are optional for development.

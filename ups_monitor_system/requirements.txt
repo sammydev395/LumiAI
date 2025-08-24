@@ -1,0 +1,19 @@
+# UPS Monitor System Requirements
+# Python 3.7+ required
+
+# Core dependencies
+smbus2>=1.1.0          # I2C communication (alternative to smbus)
+# smbus>=0.0.1          # I2C communication (use this if smbus2 not available)
+
+# GUI dependencies
+tkinter                 # Built-in with Python (usually)
+
+# Optional: For development and testing
+# pytest>=6.0.0        # For running tests
+# pytest-cov>=2.10.0   # For test coverage
+# black>=21.0.0        # For code formatting
+# flake8>=3.8.0        # For linting
+# mypy>=0.800          # For type checking
+
+# Note: smbus2 is preferred over smbus for better compatibility
+# If smbus2 is not available, smbus can be used as a fallback
