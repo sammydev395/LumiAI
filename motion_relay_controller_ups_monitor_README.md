@@ -47,15 +47,15 @@ This documentation covers the complete LumiAI Motion Relay Controller and UPS Mo
 #### Direct Raspberry Pi 5 Connection (Standard Setup)
 ```
 PIR Sensor (HC-SR501):
-  GND (right) -> 2-Lane Port A GND
-  OUT (mid)   -> 2-Lane Port A GPIO17 (GEN0)
-  VCC (left)  -> 2-Lane Port A 3.3V
+  GND (right) -> 2-Lane Port 1 GND
+  OUT (mid)   -> 2-Lane Port 1 GPIO17 (GEN0)
+  VCC (left)  -> 2-Lane Port 1 3.3V
  
 Relay Module (2-Channel):
-  VCC   -> 2-Lane Port A 3.3V
-  GND   -> 2-Lane Port A GND
-  IN1   -> 2-Lane Port A GPIO18 (GEN1) (Channel 1)
-  IN2   -> 2-Lane Port B GPIO22 (GEN3) (Channel 2)
+  VCC   -> 2-Lane Port 1 3.3V
+  GND   -> 2-Lane Port 1 GND
+  IN1   -> 2-Lane Port 1 GPIO18 (GEN1) (Channel 1)
+  IN2   -> 2-Lane Port 2 GPIO22 (GEN3) (Channel 2)
 
 UPS Monitor (INA219):
   GND   -> Expansion Board I2C JST Socket (GND)
@@ -126,7 +126,7 @@ Since the HiWonder Raspberry Pi 5 Expansion Board sits on top of the Raspberry P
 **✅ GPIO PIN MAPPING CONFIRMED!**
 
 **What We Now Know:**
-- **2-Lane GPIO Ports**: Two white 4-pin JST connectors above the DC jack
+- **2-Lane GPIO Ports**: Two white 4-pin JST connectors directly above the blue screw terminal block (DC power input)
 - **Total Available GPIO**: 4 Raspberry Pi 5 GPIO pins (2 per connector)
 - **Each 4-pin connector provides**: 3.3V, GND, GPIO A, GPIO B
 
@@ -145,20 +145,22 @@ Since the HiWonder Raspberry Pi 5 Expansion Board sits on top of the Raspberry P
 - **Port #1**: GPIO17 (GEN0) + GPIO18 (GEN1) - Perfect for PIR + Relay1
 - **Port #2**: GPIO27 (GEN2) + GPIO22 (GEN3) - Perfect for Relay2 + Status LED
 
-**2-Lane GPIO Port Pinout (Confirmed by HiWonder Lessons):**
+**2-Lane GPIO Port Pinout (Confirmed by HiWonder Documentation):**
 ```
-Port A (Above DC Jack):
+Port 1 (Above Blue Terminal Block):
 ┌─────────┬─────────┬─────────┬─────────┐
 │ Pin 1   │ Pin 2   │ Pin 3   │ Pin 4   │
 │ 3.3V    │ GND     │ GPIO17  │ GPIO18  │
 │         │         │ (GEN0)  │ (GEN1)  │
+│         │         │ Pin 11  │ Pin 12  │
 └─────────┴─────────┴─────────┴─────────┘
 
-Port B (Above DC Jack):
+Port 2 (Above Blue Terminal Block):
 ┌─────────┬─────────┬─────────┬─────────┐
 │ Pin 1   │ Pin 2   │ Pin 3   │ Pin 4   │
 │ 3.3V    │ GND     │ GPIO27  │ GPIO22  │
 │         │         │ (GEN2)  │ (GEN3)  │
+│         │         │ Pin 13  │ Pin 15  │
 └─────────┴─────────┴─────────┴─────────┘
 ```
 
@@ -194,6 +196,7 @@ for bcm in (17, 18, 27, 22):
 - **3 identical I2C JST sockets** on the left side of the board
 - **All three sockets** are wired in parallel to the same I2C bus
 - **Single I2C bus** (I2C1) fanned out to three connectors
+- **No matter which socket you use** - you're still on I2C bus 1
 
 **Pin Assignments (All 3 sockets):**
 ```
@@ -203,6 +206,12 @@ for bcm in (17, 18, 27, 22):
 │ 3.3V    │ Ground  │ GPIO2   │ GPIO3   │
 │         │         │ (BCM2)  │ (BCM3)  │
 └─────────┴─────────┴─────────┴─────────┘
+```
+
+**Pin Orientation (Looking at connector from outside board):**
+```
+[ VCC ] [ GND ] [ SDA ] [ SCL ]
+  Left ←──────────────→ Right
 ```
 
 **Key Details:**
