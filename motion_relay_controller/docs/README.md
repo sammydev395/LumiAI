@@ -103,8 +103,10 @@ Wiring Explanation:
 How the Relay Works:
 • When the relay is OFF: No connection between C and _| (spotlight is off)
 • When the relay is ON: C connects to _| (spotlight receives power)
-• L and C are both connected to the same hot wire source
 • The relay switches the connection between C and _| terminals
+
+**Why L and C are both connected to the same hot wire:**
+The relay module has L and C internally connected, so both terminals receive the same 110V AC hot wire. This allows the relay to switch power between the source (L/C) and the load (_|) when activated.
 ```
 
 ### Reference Image Notes
