@@ -22,6 +22,23 @@ This folder contains comprehensive documentation for the Motion Relay Controller
 - **Output (middle)**: 3.3V logic level, active-high
 - **GPIO Pin**: 17 (recommended)
 
+### HiWonder Raspberry Pi 5 Expansion Board Integration
+**Board**: [HiWonder Raspberry Pi 5 Expansion Board](https://www.hiwonder.com/collections/expansion-board/products/expansion-board-for-raspberry-pi-5?variant=40939498700887)
+
+**Available GPIO Pins (4 total):**
+- **IO24** - Available for PIR sensor or relay control
+- **IO22** - Available for PIR sensor or relay control  
+- **IO7** - Available for PIR sensor or relay control
+- **IO8** - Available for PIR sensor or relay control
+
+**I2C Interfaces (3 total):**
+- **3-lane IIC Port** - Available for UPS monitor (INA219 sensor)
+- **Additional I2C buses** accessible through expansion board
+
+**Power Connections:**
+- **Blue Terminal (Positive)** - Power output for sensors/modules
+- **Black Terminal (Negative)** - Ground connection
+
 
 
 ### Relay Module (2-Channel)
@@ -29,9 +46,11 @@ This folder contains comprehensive documentation for the Motion Relay Controller
 - **Load Capacity**: AC250V 10A, DC30V 10A
 - **Trigger Level**: LOW (active-low)
 - **GPIO Pins**: 18 (Channel 1), 19 (Channel 2)
-- **Terminal Block Symbols**: L (Line/Hot), C (Common), _| (Load)
+- **Terminal Block Symbols**: NO (Load Hot), COM (Power Line Hot), NC (unused)
 
 ### Wiring Summary
+
+#### Direct Raspberry Pi 5 Connection (Standard Setup)
 ```
 PIR Sensor (HC-SR501):
   GND (right) -> Raspberry Pi GND
@@ -50,6 +69,58 @@ Relay Module (2-Channel):
   Neutral (White)    -> Direct to Spotlight
   Ground (Green)     -> Direct to Spotlight
 ```
+
+#### HiWonder Expansion Board Connection (Recommended for Robotic Arm)
+```
+PIR Sensor (HC-SR501):
+  GND (right) -> Expansion Board Black Terminal (Negative)
+  OUT (mid)   -> Expansion Board GPIO IO24
+  VCC (left)  -> Expansion Board Blue Terminal (Positive)
+
+Relay Module (2-Channel):
+  VCC   -> Expansion Board Blue Terminal (Positive)
+  GND   -> Expansion Board Black Terminal (Negative)
+  IN1   -> Expansion Board GPIO IO22 (Channel 1)
+  IN2   -> Expansion Board GPIO IO7 (Channel 2)
+
+UPS Monitor (INA219):
+  VCC   -> Expansion Board Blue Terminal (Positive)
+  GND   -> Expansion Board Black Terminal (Negative)
+  SDA   -> Expansion Board 3-lane IIC Port
+  SCL   -> Expansion Board 3-lane IIC Port
+
+110V AC Power Connections:
+  Load Wire (Hot)    -> Relay Terminal NO (Load - left)
+  Hot Wire (Black)   -> Relay Terminal CO (Common - middle)
+  Neutral (White)    -> Direct to Spotlight
+  Ground (Green)     -> Direct to Spotlight
+```
+
+## UPS Monitor Integration
+
+### INA219 Current/Voltage Sensor
+The system integrates with the UPS monitor using an INA219 sensor connected via I2C to the HiWonder expansion board.
+
+**Sensor Specifications:**
+- **Operating Voltage**: 3.3V or 5V (I2C compatible)
+- **Measurement Range**: 
+  - Bus Voltage: 0-26V (configurable)
+  - Current: ±3.2A (configurable)
+  - Power: Calculated from voltage and current
+- **Interface**: I2C (I²C)
+- **Accuracy**: 12-bit ADC resolution
+
+**Integration Benefits:**
+- **Real-time power monitoring** for the robotic arm system
+- **Battery level tracking** if using UPS power
+- **Power consumption analysis** for optimization
+- **Automatic shutdown** on low power conditions
+
+**Connection via Expansion Board:**
+- **VCC** → Expansion Board Blue Terminal (Positive)
+- **GND** → Expansion Board Black Terminal (Negative)  
+- **SDA** → Expansion Board 3-lane IIC Port
+- **SCL** → Expansion Board 3-lane IIC Port
 
 ## External Resources
 
