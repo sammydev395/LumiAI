@@ -100,12 +100,18 @@ GND    ----->        GND
 
 ### 110V AC Load Connections
 ```
-110V AC Power Source          Relay Module          Spotlight
-Hot Wire (Black)    ----->    L (Line/Hot)         ----->    (Same wire)
-Hot Wire (Black)    ----->    C (Common)           ----->    (Same wire)
-Neutral (White)     ----->    Direct Connection    ----->    Neutral Wire  
-Ground (Green)      ----->    Direct Connection    ----->    Ground Wire
-Load Wire (Hot)     ----->    _| (Load)            ----->    Hot Wire
+110V AC Power Source          Relay Module          AC Power Load (Spotlight)
+┌─────────────────┐         ┌─────────────┐      ┌─────────────────┐
+│ Hot (Black) ────┼─────────┤ L           │      │                 │
+│                  │         │             │      │                 │
+│ Hot (Black) ────┼─────────┤ C           │      │                 │
+│                  │         │             │      │                 │
+│ Neutral (White) ─┼─────────┼─────────────┼──────┤ Neutral (White) │
+│                  │         │ _|          │      │                 │
+│ Ground (Green) ──┼─────────┼─────────────┼──────┤ Ground (Green)  │
+└─────────────────┘         │             │      │                 │
+                            │             │      │ Hot (Black)     │
+                            └─────────────┘      └─────────────────┘
 
 Terminal Block Layout:
 ┌─────┬─────┬─────┐
@@ -113,6 +119,13 @@ Terminal Block Layout:
 │     │     │     │
 │Left │Mid  │Right│
 └─────┴─────┴─────┘
+
+Wiring Explanation:
+• L (Left):  110V AC Hot wire from power source
+• C (Middle): 110V AC Hot wire from power source (same as L)
+• _| (Right): 110V AC Hot wire to spotlight (load)
+• Neutral: Direct connection from power source to spotlight
+• Ground: Direct connection from power source to spotlight
 ```
 
 **Important**: The relay only switches the hot wire. Neutral and ground wires should be connected directly from the power source to the spotlight for safety.

@@ -73,18 +73,18 @@ The relay module has terminal blocks marked with symbols:
 
 ### Complete 110V AC Wiring Diagram
 ```
-110V AC Power Source          Relay Module          Spotlight
-┌─────────────────┐         ┌─────────────┐      ┌─────────┐
-│ Hot (Black) ────┼─────────┤ L           │      │         │
-│                  │         │             │      │         │
-│ Hot (Black) ────┼─────────┤ C           │      │         │
-│                  │         │             │      │         │
-│ Neutral (White) ─┼─────────┼─────────────┼──────┤ Hot     │
-│                  │         │ _|          │      │         │
-│ Ground (Green) ──┼─────────┼─────────────┼──────┤ Neutral │
-└─────────────────┘         │             │      │         │
-                            │             │      │ Ground  │
-                            └─────────────┘      └─────────┘
+110V AC Power Source          Relay Module          AC Power Load (Spotlight)
+┌─────────────────┐         ┌─────────────┐      ┌─────────────────┐
+│ Hot (Black) ────┼─────────┤ L           │      │                 │
+│                  │         │             │      │                 │
+│ Hot (Black) ────┼─────────┤ C           │      │                 │
+│                  │         │             │      │                 │
+│ Neutral (White) ─┼─────────┼─────────────┼──────┤ Neutral (White) │
+│                  │         │ _|          │      │                 │
+│ Ground (Green) ──┼─────────┼─────────────┼──────┤ Ground (Green)  │
+└─────────────────┘         │             │      │                 │
+                            │             │      │ Hot (Black)     │
+                            └─────────────┘      └─────────────────┘
 
 Terminal Block Layout:
 ┌─────┬─────┬─────┐
@@ -92,6 +92,13 @@ Terminal Block Layout:
 │     │     │     │
 │Left │Mid  │Right│
 └─────┴─────┴─────┘
+
+Wiring Explanation:
+• L (Left):  110V AC Hot wire from power source
+• C (Middle): 110V AC Hot wire from power source (same as L)
+• _| (Right): 110V AC Hot wire to spotlight (load)
+• Neutral: Direct connection from power source to spotlight
+• Ground: Direct connection from power source to spotlight
 ```
 
 ### Safety Guidelines
