@@ -19,8 +19,10 @@ This folder contains comprehensive documentation for the Motion Relay Controller
 ### PIR Sensor (HC-SR501)
 - **Operating Voltage**: 4.5-20V DC
 - **Detection Range**: 3-7 meters (adjustable)
-- **Output**: 3.3V logic level, active-high
+- **Output (middle)**: 3.3V logic level, active-high
 - **GPIO Pin**: 17 (recommended)
+
+
 
 ### Relay Module (2-Channel)
 - **Power Supply**: 5V DC
@@ -32,10 +34,10 @@ This folder contains comprehensive documentation for the Motion Relay Controller
 ### Wiring Summary
 ```
 PIR Sensor (HC-SR501):
-  VCC   -> Raspberry Pi 5V
-  GND   -> Raspberry Pi GND
-  OUT   -> Raspberry Pi GPIO 17
-
+  GND (right) -> Raspberry Pi GND
+  OUT (mid)   -> Raspberry Pi GPIO 17
+  VCC (left)  -> Raspberry Pi 5V
+ 
 Relay Module (2-Channel):
   VCC   -> Raspberry Pi 5V
   GND   -> Raspberry Pi GND
@@ -43,8 +45,8 @@ Relay Module (2-Channel):
   IN2   -> Raspberry Pi GPIO 19 (Channel 2)
 
 110V AC Power Connections:
-  Hot Wire (Black)   -> Relay Terminal C (Common)
-  Load Wire (Hot)    -> Relay Terminal _| (Load)
+  Load Wire (Hot)    -> Relay Terminal NO (Load - left)
+  Hot Wire (Black)   -> Relay Terminal CO (Common - middle)
   Neutral (White)    -> Direct to Spotlight
   Ground (Green)     -> Direct to Spotlight
 ```
@@ -67,46 +69,48 @@ Relay Module (2-Channel):
 
 ### Understanding Relay Terminal Block Symbols
 The relay module has terminal blocks marked with symbols:
-- **L (Line/Hot)**: Connect to 110V AC hot wire (black) - Left terminal
-- **C (Common)**: Connect to 110V AC hot wire (black) - Middle terminal  
-- **_| (Load)**: Connect to your spotlight's hot wire - Right terminal
+- **NC (Normally Closed)**: Contact closed when relay is OFF, open when relay is ON
+- **NO (Normally Open)**: Contact open when relay is OFF, closed when relay is ON
+- **COM (Common)**: Common connection point - Left terminal
 
 ### Complete 110V AC Wiring Diagram
 ```
-110V AC Power Source          Relay Module          AC Power Load (Spotlight)
+110V AC Power Source          Relay Module         AC Power Load (Spotlight)
 ┌─────────────────┐         ┌─────────────┐      ┌─────────────────┐
-│ Hot (Black) ────┼─────────┤ L           │      │                 │
-│                  │         │             │      │                 │
-│ Hot (Black) ────┼─────────┤ C           │      │                 │
-│                  │         │             │      │                 │
-│ Neutral (White) ─┼─────────┼─────────────┼──────┤ Neutral (White) │
-│                  │         │ _|          │      │                 │
-│ Ground (Green) ──┼─────────┼─────────────┼──────┤ Ground (Green)  │
+│ Hot (Black) ────┼─────────┤ COM      NO │──────│ Hot (Black)     │
+│                 │         │             │      │                 │
+│ Neutral (White) ┼─────────┼─────────────┼──────┤ Neutral (White) │
+│                 │         │             │      │                 │
+│ Ground (Green) ─┼─────────┼─────────────┼──────┤ Ground (Green)  │
 └─────────────────┘         │             │      │                 │
-                            │             │      │ Hot (Black)     │
+                            │ NC          │      │                 │
                             └─────────────┘      └─────────────────┘
+```
 
-Terminal Block Layout:
-┌─────┬─────┬─────┐
-│  L  │  C  │ _|  │
-│     │     │     │
-│Left │Mid  │Right│
-└─────┴─────┴─────┘
-
+**Complete Circuit**: 
+- COM gets 110V AC hot wire from power source
+- NO connects to spotlight's hot wire (this completes the circuit!)
+- Neutral and Ground go directly from power source to spotlight
+```
+Terminal Block Layout:  
+┌─────┬─────┬─────┐  
+│ NO  │ COM │ NC  │  
+│     │     │     │  
+│Left │Mid  │Right│  
+└─────┴─────┴─────┘  
+```
+```
 Wiring Explanation:
-• L (Left):  110V AC Hot wire from power source
-• C (Middle): 110V AC Hot wire from power source 
-• _| (Right): 110V AC Hot wire to spotlight (load)
+• NO (Left): 110V AC Hot wire to spotlight (load) - **This completes the circuit!**
+• COM (Middle): 110V AC Hot wire from power source
+• NC (Right): Not used for this application
 • Neutral: Direct connection from power source to spotlight
 • Ground: Direct connection from power source to spotlight
 
 How the Relay Works:
-• When the relay is OFF: No connection between C and _| (spotlight is off)
-• When the relay is ON: C connects to _| (spotlight receives power)
-• The relay switches the connection between C and _| terminals
-
-**Why L and C are both connected to the same hot wire:**
-The relay module has L and C internally connected, so both terminals receive the same 110V AC hot wire. This allows the relay to switch power between the source (L/C) and the load (_|) when activated.
+• When the relay is OFF: COM connects to NC (spotlight is off)
+• When the relay is ON: COM connects to NO (spotlight receives power)
+• The relay switches the connection between COM and NO/NC terminals
 ```
 
 ### Reference Image Notes
@@ -120,9 +124,9 @@ Your actual setup uses a **Raspberry Pi 5**, not an Arduino.
 - **GND** → **GND** (Relay ground)
 
 **Relay Module Load Side (Per Channel):**
-- **L Terminal**: Connected to 110V AC hot wire (power source)
-- **C Terminal**: Connected to 110V AC hot wire (power source) - same as L
-- **_| Terminal**: Connected to your spotlight's hot wire
+- **COM Terminal**: Connected to 110V AC hot wire (power source)
+- **NO Terminal**: Connected to your spotlight's hot wire (load)
+- **NC Terminal**: Not used for this application
 
 ### Safety Guidelines
 - **Always turn off power** before making connections
