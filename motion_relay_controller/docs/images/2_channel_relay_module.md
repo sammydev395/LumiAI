@@ -29,9 +29,9 @@ Two identical "SONGLE" brand relays positioned side-by-side:
 Two blue 3-pin screw terminal blocks (K1 and K2):
 
 #### Terminal Configuration
-- **Pin 1**: L (Line/Hot) - Connect to 110V AC hot wire
-- **Pin 2**: C (Common) - Connect to 110V AC hot wire
-- **Pin 3**: _| (Load) - Connect to your spotlight's hot wire
+- **Pin 1 (Left)**: L (Line/Hot) - Connect to 110V AC hot wire
+- **Pin 2 (Middle)**: C (Common) - Connect to 110V AC hot wire  
+- **Pin 3 (Right)**: _| (Load) - Connect to your spotlight's hot wire
 
 #### Usage Options
 - **Load Switching**: C to _| for spotlight control
@@ -101,10 +101,18 @@ GND    ----->        GND
 ### 110V AC Load Connections
 ```
 110V AC Power Source          Relay Module          Spotlight
-Hot Wire (Black)    ----->    C (Common)           ----->    Hot Wire
+Hot Wire (Black)    ----->    L (Line/Hot)         ----->    (Same wire)
+Hot Wire (Black)    ----->    C (Common)           ----->    (Same wire)
 Neutral (White)     ----->    Direct Connection    ----->    Neutral Wire  
 Ground (Green)      ----->    Direct Connection    ----->    Ground Wire
 Load Wire (Hot)     ----->    _| (Load)            ----->    Hot Wire
+
+Terminal Block Layout:
+┌─────┬─────┬─────┐
+│  L  │  C  │ _|  │
+│     │     │     │
+│Left │Mid  │Right│
+└─────┴─────┴─────┘
 ```
 
 **Important**: The relay only switches the hot wire. Neutral and ground wires should be connected directly from the power source to the spotlight for safety.

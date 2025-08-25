@@ -67,14 +67,16 @@ Relay Module (2-Channel):
 
 ### Understanding Relay Terminal Block Symbols
 The relay module has terminal blocks marked with symbols:
-- **L (Line/Hot)**: Connect to 110V AC hot wire (black)
-- **C (Common)**: Connect to 110V AC hot wire (black) 
-- **_| (Load)**: Connect to your spotlight's hot wire
+- **L (Line/Hot)**: Connect to 110V AC hot wire (black) - Left terminal
+- **C (Common)**: Connect to 110V AC hot wire (black) - Middle terminal  
+- **_| (Load)**: Connect to your spotlight's hot wire - Right terminal
 
 ### Complete 110V AC Wiring Diagram
 ```
 110V AC Power Source          Relay Module          Spotlight
 ┌─────────────────┐         ┌─────────────┐      ┌─────────┐
+│ Hot (Black) ────┼─────────┤ L           │      │         │
+│                  │         │             │      │         │
 │ Hot (Black) ────┼─────────┤ C           │      │         │
 │                  │         │             │      │         │
 │ Neutral (White) ─┼─────────┼─────────────┼──────┤ Hot     │
@@ -83,6 +85,13 @@ The relay module has terminal blocks marked with symbols:
 └─────────────────┘         │             │      │         │
                             │             │      │ Ground  │
                             └─────────────┘      └─────────┘
+
+Terminal Block Layout:
+┌─────┬─────┬─────┐
+│  L  │  C  │ _|  │
+│     │     │     │
+│Left │Mid  │Right│
+└─────┴─────┴─────┘
 ```
 
 ### Safety Guidelines
