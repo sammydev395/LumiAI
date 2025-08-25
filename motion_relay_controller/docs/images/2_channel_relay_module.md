@@ -122,10 +122,16 @@ Terminal Block Layout:
 
 Wiring Explanation:
 • L (Left):  110V AC Hot wire from power source
-• C (Middle): 110V AC Hot wire from power source (same as L)
+• C (Middle): 110V AC Hot wire from power source 
 • _| (Right): 110V AC Hot wire to spotlight (load)
 • Neutral: Direct connection from power source to spotlight
 • Ground: Direct connection from power source to spotlight
+
+How the Relay Works:
+• When the relay is OFF: No connection between C and _| (spotlight is off)
+• When the relay is ON: C connects to _| (spotlight receives power)
+• L and C are both connected to the same hot wire source
+• The relay switches the connection between C and _| terminals
 ```
 
 **Important**: The relay only switches the hot wire. Neutral and ground wires should be connected directly from the power source to the spotlight for safety.
