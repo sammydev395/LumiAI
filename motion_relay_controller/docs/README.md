@@ -27,6 +27,7 @@ This folder contains comprehensive documentation for the Motion Relay Controller
 - **Load Capacity**: AC250V 10A, DC30V 10A
 - **Trigger Level**: LOW (active-low)
 - **GPIO Pins**: 18 (Channel 1), 19 (Channel 2)
+- **Terminal Block Symbols**: L (Line/Hot), C (Common), _| (Load)
 
 ### Wiring Summary
 ```
@@ -40,6 +41,12 @@ Relay Module (2-Channel):
   GND   -> Raspberry Pi GND
   IN1   -> Raspberry Pi GPIO 18 (Channel 1)
   IN2   -> Raspberry Pi GPIO 19 (Channel 2)
+
+110V AC Power Connections:
+  Hot Wire (Black)   -> Relay Terminal C (Common)
+  Load Wire (Hot)    -> Relay Terminal _| (Load)
+  Neutral (White)    -> Direct to Spotlight
+  Ground (Green)     -> Direct to Spotlight
 ```
 
 ## External Resources
@@ -56,12 +63,49 @@ Relay Module (2-Channel):
 - **PIR Sensor**: Kiro&Seeu HC-SR501 Pyroelectric Infrared IR PIR Human Motion Sensor
 - **Relay Module**: SunFounder 2 Channel DC 5V Relay Module (Model: 8541582329)
 
+## Power Connection Guide
+
+### Understanding Relay Terminal Block Symbols
+The relay module has terminal blocks marked with symbols:
+- **L (Line/Hot)**: Connect to 110V AC hot wire (black)
+- **C (Common)**: Connect to 110V AC hot wire (black) 
+- **_| (Load)**: Connect to your spotlight's hot wire
+
+### Complete 110V AC Wiring Diagram
+```
+110V AC Power Source          Relay Module          Spotlight
+┌─────────────────┐         ┌─────────────┐      ┌─────────┐
+│ Hot (Black) ────┼─────────┤ C           │      │         │
+│                  │         │             │      │         │
+│ Neutral (White) ─┼─────────┼─────────────┼──────┤ Hot     │
+│                  │         │ _|          │      │         │
+│ Ground (Green) ──┼─────────┼─────────────┼──────┤ Neutral │
+└─────────────────┘         │             │      │         │
+                            │             │      │ Ground  │
+                            └─────────────┘      └─────────┘
+```
+
+### Safety Guidelines
+- **Always turn off power** before making connections
+- **Use proper wire nuts or terminal blocks** for secure connections
+- **Ensure proper grounding** - never skip the ground wire
+- **Use appropriate wire gauge** for your current requirements
+- **Consider using a junction box** to contain all connections
+
+### Alternative: Power Strip Method
+If you want to avoid cutting wires:
+1. Cut the hot wire of a power strip
+2. Connect the relay in series with the hot wire
+3. Plug your spotlight into the power strip
+4. Plug the power strip into your 110V outlet
+
 ## Getting Started
 
 1. **Review Hardware Documentation**: Start with the component-specific documentation in the `images/` folder
 2. **Check Configuration**: Review the GPIO pin assignments and system settings
-3. **Run Examples**: Try the basic and advanced usage examples
-4. **Test System**: Use the test script to verify component functionality
+3. **Review Power Connections**: Understand the 110V AC wiring requirements
+4. **Run Examples**: Try the basic and advanced usage examples
+5. **Test System**: Use the test script to verify component functionality
 
 ## Support
 

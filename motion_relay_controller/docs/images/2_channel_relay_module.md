@@ -29,13 +29,13 @@ Two identical "SONGLE" brand relays positioned side-by-side:
 Two blue 3-pin screw terminal blocks (K1 and K2):
 
 #### Terminal Configuration
-- **Pin 1**: Normally Open (NO) contact
-- **Pin 2**: Common (COM) contact  
-- **Pin 3**: Normally Closed (NC) contact
+- **Pin 1**: L (Line/Hot) - Connect to 110V AC hot wire
+- **Pin 2**: C (Common) - Connect to 110V AC hot wire
+- **Pin 3**: _| (Load) - Connect to your spotlight's hot wire
 
 #### Usage Options
-- **Normally Open**: COM to NO for load switching
-- **Normally Closed**: COM to NC for fail-safe applications
+- **Load Switching**: C to _| for spotlight control
+- **Fail-safe**: C to L for normally closed applications
 - **Independent Control**: Each channel operates independently
 
 ### 4. Control and Power Input Section
@@ -97,6 +97,17 @@ Relay Module          Raspberry Pi
 VCC    ----->        5V
 GND    ----->        GND
 ```
+
+### 110V AC Load Connections
+```
+110V AC Power Source          Relay Module          Spotlight
+Hot Wire (Black)    ----->    C (Common)           ----->    Hot Wire
+Neutral (White)     ----->    Direct Connection    ----->    Neutral Wire  
+Ground (Green)      ----->    Direct Connection    ----->    Ground Wire
+Load Wire (Hot)     ----->    _| (Load)            ----->    Hot Wire
+```
+
+**Important**: The relay only switches the hot wire. Neutral and ground wires should be connected directly from the power source to the spotlight for safety.
 
 ### Control Signal Connections
 ```
