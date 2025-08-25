@@ -134,6 +134,25 @@ How the Relay Works:
 • The relay switches the connection between C and _| terminals
 ```
 
+### Your Actual Hardware Setup
+Based on your image, here's the real connection:
+
+**Arduino Mega → Relay Module:**
+- **Digital Pin 50/51** → **IN1** (Channel 1 control)
+- **Digital Pin 52/53** → **IN2** (Channel 2 control)
+- **5V** → **VCC** (Relay power supply)
+- **GND** → **GND** (Common ground)
+
+**Relay Module → 110V AC Load:**
+- **L Terminal (Left)**: 110V AC hot wire from power source
+- **C Terminal (Middle)**: 110V AC hot wire from power source (same as L)
+- **_| Terminal (Right)**: 110V AC hot wire to your spotlight
+
+**Safety Warning:**
+The breadboard in your setup is for **Arduino control signals only**.
+**110V AC power should NEVER go through the breadboard** - it's dangerous!
+Route 110V AC directly: Power Source → Relay → Spotlight
+
 **Important**: The relay only switches the hot wire. Neutral and ground wires should be connected directly from the power source to the spotlight for safety.
 
 ### Control Signal Connections
