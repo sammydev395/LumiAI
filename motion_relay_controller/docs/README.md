@@ -107,12 +107,13 @@ How the Relay Works:
 • The relay switches the connection between C and _| terminals
 ```
 
-### Actual Setup from Your Image
-Based on your actual hardware setup, here's what's connected:
+### Reference Image Notes
+The image you shared shows a relay module setup for reference purposes. 
+Your actual setup uses a **Raspberry Pi 5**, not an Arduino.
 
-**Arduino Mega Control Side:**
-- **Pin 50/51** → **IN1** (Relay Channel 1)
-- **Pin 52/53** → **IN2** (Relay Channel 2)  
+**Your Raspberry Pi 5 Setup:**
+- **GPIO 18** → **IN1** (Relay Channel 1)
+- **GPIO 19** → **IN2** (Relay Channel 2)  
 - **5V** → **VCC** (Relay power)
 - **GND** → **GND** (Relay ground)
 
@@ -120,11 +121,6 @@ Based on your actual hardware setup, here's what's connected:
 - **L Terminal**: Connected to 110V AC hot wire (power source)
 - **C Terminal**: Connected to 110V AC hot wire (power source) - same as L
 - **_| Terminal**: Connected to your spotlight's hot wire
-
-**Important Safety Note:**
-The breadboard in your image is for **low-voltage Arduino control only**. 
-**NEVER route 110V AC through the breadboard** - it's dangerous and can cause fires.
-110V AC connections should go directly from power source → relay → spotlight.
 
 ### Safety Guidelines
 - **Always turn off power** before making connections
