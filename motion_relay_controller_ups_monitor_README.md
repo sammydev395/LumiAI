@@ -202,15 +202,15 @@ for bcm in (17, 18, 27, 22):
 ```
 ┌─────────┬─────────┬─────────┬─────────┐
 │ Pin 1   │ Pin 2   │ Pin 3   │ Pin 4   │
-│ VCC     │ GND     │ SDA     │ SCL     │
-│ 3.3V    │ Ground  │ GPIO2   │ GPIO3   │
-│         │         │ (BCM2)  │ (BCM3)  │
+│ SDA     │ SCL     │ GND     │ VCC     │
+│ GPIO2   │ GPIO3   │ Ground  │ 3.3V    │
+│ (BCM2)  │ (BCM3)  │         │         │
 └─────────┴─────────┴─────────┴─────────┘
 ```
 
 **Pin Orientation (Looking at connector from outside board):**
 ```
-[ VCC ] [ GND ] [ SDA ] [ SCL ]
+[ SDA ] [ SCL ] [ GND ] [ VCC ]
   Left ←──────────────→ Right
 ```
 
