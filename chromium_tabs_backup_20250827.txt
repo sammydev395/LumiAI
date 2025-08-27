@@ -1,0 +1,26 @@
+# Chromium Tabs Backup - Pre-Bookworm Migration
+# Created: Wed Aug 27 13:57:25 PDT 2025
+# From: Ubuntu 24.04.3 LTS on RPi5
+
+## Open Tabs (from session files):
+http://github.com/
+https://github.com
+https://github.com/
+https://github.com/account/public_keys/125733662
+https://github.com/account/public_keys/125734159
+https://github.com/login
+https://github.com/new
+https://github.com/sammydev395/armpi_fpv
+https://github.com/sammydev395/rpi_armpi_fpv_ros1
+https://github.com/sammydev395/rpi_armpi_fpv_setup
+https://github.com/sammydev395/rpi_armpi_fpv_setup/settings
+https://github.com/sammydev395/rpi_armpi_fpv_setup/settings/delete
+https://github.com/sammydev395?tab=repositories
+https://github.com/session
+https://github.com/settings/keys
+https://github.com/settings/profile
+https://github.com/settings/ssh
+https://github.com/settings/ssh/new
+
+## Recent History (from History database):
+# Could not extract history
