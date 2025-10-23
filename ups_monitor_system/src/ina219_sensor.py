@@ -5,7 +5,10 @@ This module provides an improved, object-oriented interface for the INA219
 current/voltage sensor, commonly used in UPS monitoring systems.
 """
 
-import smbus
+try:
+    import smbus2 as smbus
+except ImportError:
+    import smbus
 import time
 from typing import Optional, Tuple
 from dataclasses import dataclass
